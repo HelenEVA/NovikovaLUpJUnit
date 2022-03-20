@@ -1,43 +1,47 @@
 public class PersonalClass {
-    private float income; //доходы
-    private float expenses; //расходы
+    protected float income; //доходы
+    protected float expenses; //расходы
 
-    public void  addIncome(float aIncome) throws Exception {
-        if (aIncome <= 0) {
+    public float addIncome(float aIncome) {
+        float addIncome = 0;
+        if (aIncome >= 0) {
             income= income + aIncome;
         } else {
-            throw new Exception("Доход не может быть отрицательным");
+           System.out.println("Доход не может быть отрицательным");
         }
+        return income;
     }
 
-    public void addExpenses(float aExpenses) throws Exception {
-        if (aExpenses < 0) {
+    public float addExpenses(float aExpenses){
+        float addExpenses = 0;
+        if (aExpenses >= 0) {
             expenses= expenses + aExpenses;
         } else {
-            throw new Exception("Расход не может быть отрицательным");
+            System.out.println("Расход не может быть отрицательным");
         }
+        return expenses;
     }
 
-    public float taxUsnIncome() throws Exception {
+    public float taxUsnIncome() {
         float taxUsn = 6;
-        float Usn;
+        float usn = 0;
         if (income > 0) {
-            Usn = (income * taxUsn) / 100;
-            return Usn;
+            usn = (income * taxUsn) / 100;
         } else {
-            throw new Exception("Нет дохода для расчета налога");
+            System.out.println("Нет дохода для расчета налога");
         }
+        return usn;
     }
 
-    public float taxNdflIncome() throws Exception {
+    public float taxNdflIncome() {
         float taxNdfl = 15;
-        float Ndfl;
-        if (income > 0) {
-            Ndfl = ((income - expenses) * taxNdfl) / 100;
-            return Ndfl;
+        float ndfl = 0;
+        if (income > 0)  {
+            ndfl = ((income - expenses) * taxNdfl) / 100;
         } else {
-            throw new Exception("Нет дохода для расчета налога");
+            System.out.println("Нет дохода для расчета налога");
         }
+        return ndfl;
     }
 
 
