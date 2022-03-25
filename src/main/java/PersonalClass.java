@@ -3,7 +3,7 @@ public class PersonalClass {
     protected float expenses; //расходы
 
     public float addIncome(float aIncome) {
-        float addIncome = 0;
+
         if (aIncome >= 0) {
             income= income + aIncome;
         } else {
@@ -13,7 +13,7 @@ public class PersonalClass {
     }
 
     public float addExpenses(float aExpenses){
-        float addExpenses = 0;
+
         if (aExpenses >= 0) {
             expenses= expenses + aExpenses;
         } else {
@@ -36,7 +36,7 @@ public class PersonalClass {
     public float taxNdflIncome() {
         float taxNdfl = 15;
         float ndfl = 0;
-        if (income > 0)  {
+        if (income > expenses)  {
             ndfl = ((income - expenses) * taxNdfl) / 100;
         } else {
             System.out.println("Нет дохода для расчета налога");

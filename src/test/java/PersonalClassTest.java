@@ -41,7 +41,7 @@ public class PersonalClassTest {
     public void getTaxUsnIncome (float income, float expected){
 
         PersonalClass r = new PersonalClass();
-        r.addIncome(income);
+        r.income = income;
 
         float actual = r.taxUsnIncome();
         Assertions.assertEquals(expected, actual);
@@ -54,8 +54,8 @@ public class PersonalClassTest {
     public void getTaxNdflIncome (float income, float expenses, float expected){
 
         PersonalClass r = new PersonalClass();
-        r.addIncome(income);
-        r.addExpenses(expenses);
+        r.income = income;
+        r.expenses = expenses;
 
         float actual = r.taxNdflIncome();
         Assertions.assertEquals(expected, actual);
