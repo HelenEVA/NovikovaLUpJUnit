@@ -3,23 +3,25 @@ import java.util.Map;
 
 public class ManagerPedometer {
 
-    protected Map<Integer, Integer> data = new HashMap<>();
+    private Map<Integer, Integer> data = new HashMap<>();
+    private int max = 0;
 
-    public void add(int day, int steps){
+    public int add(int day, int steps) {
+        if (day <= 0 || steps < 0) {
+            return -1;
+        } else {
+            int sumStepsDaily = data.getOrDefault(day, 0) + steps;
+            data.put(day, sumStepsDaily);
+            for (int valueSteps : data.values()) {
+                if (steps > max) {
+                    max = steps;
+                }
 
-        int sumStepsDaily = data.getOrDefault(day, 0) + steps;
-        data.put(day, sumStepsDaily);
-
-    }
-
-    public int maxSteps(){
-        int max = 0;
-        for (int steps : data.values()){
-            if (steps > max){
-                max = steps;
             }
-        }
-        return max;
-    }
+            System.out.println(max-steps+1);
+            return max - steps + 1;
 
+        }
+
+    }
 }
