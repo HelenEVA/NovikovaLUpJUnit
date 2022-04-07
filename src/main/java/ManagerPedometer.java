@@ -56,17 +56,12 @@ public class ManagerPedometer implements Comparable<ManagerPedometer> {
         return sum() - managerPedometer.sum();
     }
 
-    public Map<Integer, Boolean> printAllDaysByCriteria(Predicate<Integer> criteria) {
-
-        HashMap<Integer, Boolean> stepsTrue = new HashMap<>();
-
-        for  (int steps : data.keySet()) {
-            if (criteria.test(data.get(steps))) {
-                System.out.println("День " + steps + " шагов " + data.get(steps));
-                stepsTrue.put(steps, true);
+    public void printAllByCriteria(Predicate<Integer> predicate) {
+        for (int day : data.keySet()) {
+            if (predicate.test(data.get(day))) {
+                System.out.println("День " + day + " шагов " + data.get(day));
             }
         }
-        return stepsTrue;
     }
 
 
