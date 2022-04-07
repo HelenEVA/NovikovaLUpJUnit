@@ -9,20 +9,19 @@ public class ManagerPedometer implements Comparable<ManagerPedometer> {
 
     public int add(int day, int steps) {
 
-        if (day <= 0 || steps < 0) {
-            return -1;
-        } else {
+        if (day <= 0 || day > 365) {
+            throw new IllegalDayException(day);
+        } else if (steps >= 0){
             int sumStepsDaily = data.getOrDefault(day, 0) + steps;
             data.put(day, sumStepsDaily);
-            for (int valueSteps : data.values()) {
-                if (steps > max) {
-                    max = steps;
+            if (sumStepsDaily > max) {
+                    max = sumStepsDaily;
                 }
+            return max + 1 - steps;
 
             }
-            //System.out.println(max-sumStepsDaily+1);
-            return max - sumStepsDaily + 1;
-
+            else {
+                throw new IllegalStepsException(steps);
         }
 
     }
@@ -53,20 +52,16 @@ public class ManagerPedometer implements Comparable<ManagerPedometer> {
     @Override
 
     public int compareTo(ManagerPedometer managerPedometer) {
+
         return sum() - managerPedometer.sum();
     }
 
-    public Map<Integer, Boolean> printAllDaysByCriteria(Predicate<Integer> criteria) {
-
-        HashMap<Integer, Boolean> stepsTrue = new HashMap<>();
-
-        for  (int steps : data.keySet()) {
-            if (criteria.test(data.get(steps))) {
-                System.out.println("День " + steps + " шагов " + data.get(steps));
-                stepsTrue.put(steps, true);
+    public void printAllByCriteria(Predicate<Integer> predicate) {
+        for (int day : data.keySet()) {
+            if (predicate.test(data.get(day))) {
+                System.out.println("День " + day + " шагов " + data.get(day));
             }
         }
-        return stepsTrue;
     }
 
 

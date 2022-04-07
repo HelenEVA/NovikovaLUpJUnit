@@ -75,75 +75,15 @@ public class ManagerPedometerTest {
     public void shouldStepsMore10000(){
 
         ManagerPedometer mp = new ManagerPedometer();
-        int minSteps = 10000;
 
         mp.add(1, 11000);
         mp.add(2,9068);
         mp.add(3,100);
 
-        Map<Integer, Boolean> expected = new HashMap<>();
 
-        expected.put(1,true);
-
-        Map<Integer, Boolean> actual = mp.printAllDaysByCriteria(step -> step > minSteps);
-        for (int steps : actual.keySet()) {
-            System.out.println("День " + steps + " " + actual.get(steps));
-        }
-
-        Assertions.assertEquals(expected,actual);
+        mp.printAllByCriteria(steps ->steps >10000);
 
     }
 
-    @Test
-
-    public void shouldSumStepsOf2day(){
-
-        ManagerPedometer mp = new ManagerPedometer();
-        int minSteps = 10000;
-
-        mp.add(1, 1000);
-        mp.add(2,9000);
-        mp.add(2,3000);
-        mp.add(3,900);
-
-        Map<Integer, Boolean> expected = new HashMap<>();
-
-        expected.put(2,true);
-
-        Map<Integer, Boolean> actual = mp.printAllDaysByCriteria(step -> step > minSteps);
-        for (int steps : actual.keySet()) {
-            System.out.println("День " + steps + " " + actual.get(steps));
-        }
-
-        Assertions.assertEquals(expected,actual);
-
-    }
-
-    @Test
-
-    public void shouldSteps(){
-
-        ManagerPedometer mp = new ManagerPedometer();
-        int minSteps = 10000;
-
-        mp.add(1, 11000);
-        mp.add(2,9000);
-        mp.add(2,3000);
-        mp.add(3,90000);
-
-        Map<Integer, Boolean> expected = new HashMap<>();
-
-        expected.put(1,true);
-        expected.put(2,true);
-        expected.put(3,true);
-
-        Map<Integer, Boolean> actual = mp.printAllDaysByCriteria(step -> step > minSteps);
-        for (int steps : actual.keySet()) {
-            System.out.println("День " + steps + " " + actual.get(steps));
-        }
-
-        Assertions.assertEquals(expected,actual);
-
-    }
 
 }
